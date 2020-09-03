@@ -73,7 +73,7 @@ const Register = () => {
   };
 
   const onSubmit = (e) => {
-    sendData(formData);
+    sendData({ ...formData, final: true });
     if (passwordIsValid) {
       console.log(formData);
     } else {
