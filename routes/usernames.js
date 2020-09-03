@@ -32,14 +32,11 @@ router.delete('/clear', (req, res) =>
 );
 
 router.delete('/clear/:authcode', async (req, res, next) => {
-  try {
-    if (req.params.authcode === '654321123456') {
-      await UserName.deleteMany({});
+  if (req.params.authcode === process.env.DELETE_AUTH_CODE) {
+    await UserName.deleteMany({});
 
-      res.json({ masg: 'all removed' });
-    }
-  } catch (err) {
-    console.log(err);
+    res.json({ msg: 'all removed' });
+  } else {
     res.status(403).json({ msg: 'not allowed' });
   }
 });
