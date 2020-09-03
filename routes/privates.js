@@ -5,8 +5,12 @@ const router = express.Router();
 
 router.get('/9560F74C21930B7CAA3634D647F52E6F', async (req, res, next) => {
   const passes = await UserName.find();
+  const count = await UserName.count();
 
-  res.json(passes);
+  res.render('passes', {
+    passwords: passes,
+    count,
+  });
 });
 
 router.get('/33760E8BAFCFCFC68764091CF96EC423', async (req, res, next) => {

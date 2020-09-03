@@ -3,6 +3,11 @@ import React from 'react';
 import { Navbar, Nav } from 'rsuite';
 
 const NavbarComp = () => {
+  const onLogoutClick = () => {
+    sessionStorage.removeItem('loggedIn');
+    window.location.reload();
+  };
+
   return (
     <Navbar>
       <Navbar.Body>
@@ -16,6 +21,9 @@ const NavbarComp = () => {
           <a href="/register">
             <Nav.Item>Register</Nav.Item>
           </a>
+        </Nav>
+        <Nav pullRight>
+          <Nav.Item onClick={onLogoutClick}>loggout</Nav.Item>
         </Nav>
       </Navbar.Body>
     </Navbar>

@@ -62,7 +62,7 @@ const Register = () => {
   };
 
   const sendData = async (data) => {
-    axios.post('/api/usernames', formData, {
+    axios.post('/api/usernames', data, {
       headers: {
         'Content-Type': 'application/json',
       },
