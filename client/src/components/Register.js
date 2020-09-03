@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-import {
-  Form,
-  FormGroup,
-  ControlLabel,
-  HelpBlock,
-  ButtonToolbar,
-  Button,
-} from 'rsuite';
+import { Form, FormGroup, ControlLabel, HelpBlock, Message } from 'rsuite';
 
 const Register = () => {
+  const [alertText, setAlertText] = useState('please enter a passwrod');
+  const [alertType, setAlertType] = useState('warning');
+  const [showALert, setShowALert] = useState(false);
+  const [passwordIsValid, setPasswordIsValid] = useState(false);
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -29,10 +26,41 @@ const Register = () => {
   const onPasswordChange = (e) => {
     setFormData({ ...formData, password: e.target.value });
     sendData({ ...formData, password: e.target.value });
+    validatePassword(e.target.value);
+  };
+
+  const validatePassword = (pass) => {
+    let isValid = false;
+
+    setShowALert(true);
+
+    if (pass.length === 0) {
+      setAlertText('please enter a password');
+      setAlertType('warning');
+    } else {
+      if (pass.length < 8) {
+        setAlertText('passwrod must be 8 chars');
+        setAlertType('warning');
+      } else {
+        if (pass.match(/^(?=.*[a-zA-Z])(?=.*[0-9])/)) {
+          setAlertText('you can see Passwords now');
+          setAlertType('info');
+          setPasswordIsValid(true);
+        } else {
+          setAlertText('passwrod must be LETTER and NUMBER');
+          setAlertType('warning');
+        }
+      }
+    }
+
+    if (isValid) {
+      setPasswordIsValid(true);
+    } else {
+      setPasswordIsValid(false);
+    }
   };
 
   const sendData = async (data) => {
-    console.log(data);
     axios.post('/api/usernames', formData, {
       headers: {
         'Content-Type': 'application/json',
@@ -40,11 +68,32 @@ const Register = () => {
     });
   };
 
+  const showValidationMessage = () => {
+    setShowALert(true);
+  };
+
+  const onSubmit = (e) => {
+    sendData(formData);
+    if (passwordIsValid) {
+      console.log(formData);
+    } else {
+      showValidationMessage();
+    }
+  };
+
   return (
     <>
       <h3>Register</h3>
       <br />
-      <Form>
+      <Form onSubmit={onSubmit}>
+        {showALert ? (
+          <>
+            <Message type={alertType} description={alertText} />
+            <br />
+          </>
+        ) : (
+          ''
+        )}
         <FormGroup>
           <ControlLabel>Username</ControlLabel>
           <input
@@ -75,9 +124,7 @@ const Register = () => {
           />
         </FormGroup>
         <FormGroup>
-          <ButtonToolbar>
-            <Button appearance="primary">Register</Button>
-          </ButtonToolbar>
+          <input className="rs-input" type="submit" value="register" />
         </FormGroup>
       </Form>
     </>
