@@ -1,12 +1,15 @@
 import React from 'react';
-import './App.css';
+import { Router } from 'react-router-dom';
 
-function App() {
+import { Navbar } from 'rsuite';
+
+const App = () => {
   return (
-    <div>
-      wellcome to passwrod manager <code>v1.0</code>
-    </div>
+    <>
+      <Navbar />
+      <Router></Router>
+    </>
   );
-}
+};
 
 export default App;
