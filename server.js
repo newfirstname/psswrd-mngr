@@ -12,6 +12,8 @@ dotenv.config({ path: './config/config.env' });
 
 connectDB();
 
+app.use(express.json({ extended: false }));
+
 if (process.env.NODE_ENV === 'development') {
   app.use(
     morgan('dev', {
@@ -21,6 +23,8 @@ if (process.env.NODE_ENV === 'development') {
     })
   );
 }
+
+app.use('/api/usernames', require('./routes/usernames'));
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
@@ -32,4 +36,4 @@ if (process.env.NODE_ENV === 'production') {
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => console.log(`server running on port: ${PORT}`.cyan));
+app.listen(PORT, () => console.log(`server running on port: ${PORT}`.magenta));

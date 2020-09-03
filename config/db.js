@@ -10,7 +10,7 @@ const connectDB = async () => {
       autoIndex: true,
     });
 
-    console.log(`MongoDB Connected: ${conn.connection.host}`.green);
+    console.log(`MongoDB Connected: ${conn.connection.host}`.magenta);
   } catch (err) {
     console.log(err);
   }
