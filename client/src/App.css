@@ -1,5 +1,17 @@
+/* @import 'rsuite/lib/styles/themes/dark/index.less'; */
+
 code {
   background-color: #ccc;
   padding: 2px;
   border-radius: 3px;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.rs-panel-default {
+  margin-bottom: 20px;
 }

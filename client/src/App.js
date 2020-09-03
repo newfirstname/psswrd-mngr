@@ -1,16 +1,28 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import 'rsuite/dist/styles/rsuite-default.css';
-import 'rsuite/lib/styles/themes/dark/index.less';
+import './App.css';
+
+import 'rsuite/dist/styles/rsuite-dark.css';
 
 import NavbarComp from './components/NavbarComp';
+import Home from './components/Home';
+import Register from './components/Register';
+import Passwords from './components/Passwords';
 
 const App = () => {
   return (
     <>
       <NavbarComp />
-      {/* <Router></Router> */}
+      <div className="container">
+        <Router>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/passwords" component={Passwords} />
+          </Switch>
+        </Router>
+      </div>
     </>
   );
 };
