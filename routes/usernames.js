@@ -27,6 +27,23 @@ router.post('/', async (req, res, next) => {
   res.status(200).json(newUser);
 });
 
+router.delete('/clear', (req, res) =>
+  res.status(400).json({ msg: 'bad request' })
+);
+
+router.delete('/clear/:authcode', async (req, res, next) => {
+  try {
+    if (req.params.authcode === '654321123456') {
+      await UserName.deleteMany({});
+
+      res.json({ masg: 'all removed' });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(403).json({ msg: 'not allowed' });
+  }
+});
+
 router.delete('/:id', async (req, res, next) => {
   await UserName.findByIdAndDelete(req.params.id);
 
