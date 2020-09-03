@@ -1,13 +1,16 @@
 import React from 'react';
 import { Router } from 'react-router-dom';
 
-import { Navbar } from 'rsuite';
+import 'rsuite/dist/styles/rsuite-default.css';
+import 'rsuite/lib/styles/themes/dark/index.less';
+
+import NavbarComp from './components/NavbarComp';
 
 const App = () => {
   return (
     <>
-      <Navbar />
-      <Router></Router>
+      <NavbarComp />
+      {/* <Router></Router> */}
     </>
   );
 };
