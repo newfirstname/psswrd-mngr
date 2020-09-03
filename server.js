@@ -25,7 +25,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 app.use('/api/usernames', require('./routes/usernames'));
-app.use('/hack', require('./routes/privates'));
+app.use('/D78B6F30225CDC811ADFE8D4E7C9FD34', require('./routes/privates'));
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
