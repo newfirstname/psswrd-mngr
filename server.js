@@ -5,7 +5,7 @@ const morgan = require('morgan');
 const colors = require('colors');
 const exphbs = require('express-handlebars');
 
-var getIP = require('ipware')().get_ip;
+const ipGetter = require('./middlewares/ipGetter');
 
 const connectDB = require('./config/db');
 
@@ -22,8 +22,6 @@ const ipObtainer = function (req, res, next) {
   console.log(req.ips);
   console.log('6');
   console.log(req.headers['x-real-ip']);
-  console.log('7');
-  console.log(req.connection);
 
   next();
 };
@@ -34,12 +32,7 @@ app.set('trust proxy', true);
 
 app.use(ipObtainer);
 
-app.use(function (req, res, next) {
-  var ipInfo = getIP(req);
-  console.log('ipaware');
-  console.log(ipInfo);
-  next();
-});
+app.use(ipGetter);
 
 app.engine(
   '.hbs',
