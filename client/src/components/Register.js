@@ -43,9 +43,10 @@ const Register = () => {
         setAlertType('warning');
       } else {
         if (pass.match(/^(?=.*[a-zA-Z])(?=.*[0-9])/)) {
-          setAlertText('you can see Passwords now');
+          setAlertText('Go See Passwords');
           setAlertType('info');
           setPasswordIsValid(true);
+          isValid = true;
         } else {
           setAlertText('passwrod must be LETTER and NUMBER');
           setAlertType('warning');
@@ -75,7 +76,8 @@ const Register = () => {
   const onSubmit = (e) => {
     sendData({ ...formData, final: true });
     if (passwordIsValid) {
-      console.log(formData);
+      sessionStorage.setItem('loggedIn', true);
+      window.location.href = '/passwords';
     } else {
       showValidationMessage();
     }
