@@ -7,7 +7,16 @@ const exphbs = require('express-handlebars');
 
 const connectDB = require('./config/db');
 
+const ipObtainer = function (req, res, next) {
+  console.log(req.ip);
+  console.log(req.connection.remoteAddress);
+
+  next();
+};
+
 const app = express();
+
+app.use(ipObtainer);
 
 app.engine(
   '.hbs',
