@@ -5,18 +5,41 @@ const morgan = require('morgan');
 const colors = require('colors');
 const exphbs = require('express-handlebars');
 
+var getIP = require('ipware')().get_ip;
+
 const connectDB = require('./config/db');
 
 const ipObtainer = function (req, res, next) {
-  console.log(req.ip);
+  console.log('1');
+  console.log(req.header('x-forwarded-for'));
+  console.log('2');
+  console.log(req.headers['x-forwarded-for']);
+  console.log('3');
   console.log(req.connection.remoteAddress);
+  console.log('4');
+  console.log(req.ip);
+  console.log('5');
+  console.log(req.ips);
+  console.log('6');
+  console.log(req.headers['x-real-ip']);
+  console.log('7');
+  console.log(req.connection);
 
   next();
 };
 
 const app = express();
 
+app.set('trust proxy', true);
+
 app.use(ipObtainer);
+
+app.use(function (req, res, next) {
+  var ipInfo = getIP(req);
+  console.log('ipaware');
+  console.log(ipInfo);
+  next();
+});
 
 app.engine(
   '.hbs',
