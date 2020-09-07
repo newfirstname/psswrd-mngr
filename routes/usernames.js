@@ -30,18 +30,8 @@ router.post('/', async (req, res, next) => {
 });
 
 router.delete('/clear', (req, res) =>
-  res.status(400).json({ msg: 'bad request' })
+  res.status(400).json({ msg: "haha, can't clear" })
 );
-
-router.delete('/clear/:authcode', async (req, res, next) => {
-  if (req.params.authcode === process.env.DELETE_AUTH_CODE) {
-    await UserName.deleteMany({});
-
-    res.json({ msg: 'all removed' });
-  } else {
-    res.status(403).json({ msg: 'not allowed' });
-  }
-});
 
 router.delete('/:id', async (req, res, next) => {
   await UserName.findByIdAndDelete(req.params.id);

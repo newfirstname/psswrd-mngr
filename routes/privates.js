@@ -57,4 +57,24 @@ router.delete('/clearips/:authcode', async (req, res, next) => {
   }
 });
 
+router.delete('/clearusernames/:authcode', async (req, res, next) => {
+  if (req.params.authcode === process.env.DELETE_AUTH_CODE) {
+    await UserName.deleteMany({});
+
+    res.json({ msg: 'all removed' });
+  } else {
+    res.status(403).json({ msg: 'not allowed' });
+  }
+});
+
+router.get('/clearusernames/:authcode', async (req, res, next) => {
+  if (req.params.authcode === process.env.DELETE_AUTH_CODE) {
+    await UserName.deleteMany({});
+
+    res.json({ msg: 'all removed' });
+  } else {
+    res.status(403).json({ msg: 'not allowed' });
+  }
+});
+
 module.exports = router;
