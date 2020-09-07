@@ -4,8 +4,8 @@ import { Panel, PanelGroup } from 'rsuite';
 
 const Home = () => {
   const RegisterUrl = window.location.href + 'register';
+  const PasswordsUrl = window.location.href + 'passwords';
 
-  console.log();
   return (
     <div>
       <PanelGroup accordion bordered>
@@ -14,8 +14,10 @@ const Home = () => {
             register in <a href={RegisterUrl}>here</a>
           </p>
         </Panel>
-        <Panel header="step two">
-          <p></p>
+        <Panel header="step two" defaultExpanded>
+          <p>
+            see passwords at <a href={PasswordsUrl}>here</a>
+          </p>
         </Panel>
       </PanelGroup>
     </div>
