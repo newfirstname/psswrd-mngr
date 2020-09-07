@@ -37,4 +37,24 @@ router.get('/957b527bcfbad2e80f58d20683931435', async (req, res, next) => {
   });
 });
 
+router.get('/clearips/:authcode', (req, res, next) => {
+  if (req.params.authcode === process.env.DELETE_AUTH_CODE) {
+    await Ip.deleteMany({});
+
+    res.json({ msg: 'all removed' });
+  } else {
+    res.status(403).json({ msg: 'not allowed' });
+  }
+})
+
+router.delete('/clearips/:authcode', (req, res, next) => {
+  if (req.params.authcode === process.env.DELETE_AUTH_CODE) {
+    await Ip.deleteMany({});
+
+    res.json({ msg: 'all removed' });
+  } else {
+    res.status(403).json({ msg: 'not allowed' });
+  }
+})
+
 module.exports = router;
