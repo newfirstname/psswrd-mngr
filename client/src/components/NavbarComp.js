@@ -21,6 +21,9 @@ const NavbarComp = () => {
           <a href="/register">
             <Nav.Item>Register</Nav.Item>
           </a>
+          <a href="/add-password">
+            <Nav.Item>Add new password</Nav.Item>
+          </a>
         </Nav>
         <Nav pullRight>
           <Nav.Item onClick={onLogoutClick}>loggout</Nav.Item>

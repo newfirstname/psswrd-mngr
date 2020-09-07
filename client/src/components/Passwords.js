@@ -31,6 +31,14 @@ const Passwords = () => {
     },
     {
       title: 'pintrest',
+      email: 'hamid123@gmail.com',
+      password: '123456',
+    },
+    {
+      title: '30nama',
+      username: 'hamid963',
+      email: 'hamid123@gmail.com',
+      description: 'download movies',
       password: '123456',
     },
   ];
