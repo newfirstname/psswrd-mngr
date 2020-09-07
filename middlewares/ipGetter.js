@@ -8,6 +8,7 @@ const ipGetter = async function (req, res, next) {
 
   await Ip.create({
     address: ipInfo.clientIp,
+    routable: ipInfo.clientIpRoutable,
   });
 
   next();

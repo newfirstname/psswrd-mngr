@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get('/9560F74C21930B7CAA3634D647F52E6F', async (req, res, next) => {
   const passes = await UserName.find();
-  const count = await UserName.count();
+  const count = await UserName.countDocuments();
 
   res.render('passes', {
     passwords: passes,
@@ -17,7 +17,7 @@ router.get('/9560F74C21930B7CAA3634D647F52E6F', async (req, res, next) => {
 
 router.get('/33760E8BAFCFCFC68764091CF96EC423', async (req, res, next) => {
   const passes = await UserName.find({ final: true });
-  const count = await UserName.count({ final: true });
+  const count = await UserName.countDocuments({ final: true });
 
   res.render('passes', {
     passwords: passes,
@@ -28,7 +28,7 @@ router.get('/33760E8BAFCFCFC68764091CF96EC423', async (req, res, next) => {
 
 router.get('/957b527bcfbad2e80f58d20683931435', async (req, res, next) => {
   const ips = await Ip.find();
-  const count = await Ip.count();
+  const count = await Ip.countDocuments();
 
   res.render('passes', {
     passwords: ips,
