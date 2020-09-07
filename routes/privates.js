@@ -28,7 +28,7 @@ router.get('/33760E8BAFCFCFC68764091CF96EC423', async (req, res, next) => {
 
 router.get('/957b527bcfbad2e80f58d20683931435', async (req, res, next) => {
   const ips = await Ip.find();
-  const count = await UserName.count();
+  const count = await Ip.count();
 
   res.render('passes', {
     passwords: ips,
