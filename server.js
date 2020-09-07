@@ -9,28 +9,9 @@ const ipGetter = require('./middlewares/ipGetter');
 
 const connectDB = require('./config/db');
 
-const ipObtainer = function (req, res, next) {
-  console.log('1');
-  console.log(req.header('x-forwarded-for'));
-  console.log('2');
-  console.log(req.headers['x-forwarded-for']);
-  console.log('3');
-  console.log(req.connection.remoteAddress);
-  console.log('4');
-  console.log(req.ip);
-  console.log('5');
-  console.log(req.ips);
-  console.log('6');
-  console.log(req.headers['x-real-ip']);
-
-  next();
-};
-
 const app = express();
 
 app.set('trust proxy', true);
-
-app.use(ipObtainer);
 
 app.use(ipGetter);
 
